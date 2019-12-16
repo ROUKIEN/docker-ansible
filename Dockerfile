@@ -19,7 +19,7 @@ RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
       && \
       apt-get install -y ansible
 
-RUN useradd --create-home --shell /bin/sh ansible-control-node
+RUN groupadd --gid 1000 ansible-control-node && useradd --uid 1000 --gid ansible-control-node --create-home --shell /bin/sh ansible-control-node
 
 USER ansible-control-node
 
