@@ -19,4 +19,10 @@ RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
       && \
       apt-get install -y ansible
 
+RUN useradd --create-home --shell /bin/sh ansible-control-node
+
+USER ansible-control-node
+
+WORKDIR /home/ansible-control-node
+
 CMD ["ansible", "--version"]
