@@ -1,6 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
+      openssh-client \
       gnupg2 \
       sshpass \
       python-setuptools \
@@ -24,5 +25,7 @@ RUN groupadd --gid 1000 ansible-control-node && useradd --uid 1000 --gid ansible
 USER ansible-control-node
 
 WORKDIR /home/ansible-control-node
+
+RUN mkdir /home/ansible-control-node/.ssh
 
 CMD ["ansible", "--version"]
